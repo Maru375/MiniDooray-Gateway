@@ -35,5 +35,4 @@ public class LoginController {
         log.debug(member.toString());
         return "redirect:/main/";
     }
-
 }

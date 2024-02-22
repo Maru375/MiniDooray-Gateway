@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+<div style="display: flex">
+    <div>
+        <!--        <th:block th:insert="~{task/taskmenu :: menuinfo}"></th:block>-->
+        <table>
+            <tr th:each="task : ${tasks}">
+                <td>
+                    <form method="get"
+                          th:action="@{'/task/{projectId}/{taskId}'(projectId=1, taskId=${task.getTaskId()})}">
+                        <button th:text="${task.getTaskName()}" type="submit"></button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
