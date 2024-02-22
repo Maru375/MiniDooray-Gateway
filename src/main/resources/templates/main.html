@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+<div class="main-container">
+    <div style="flex-direction: column" class="project-container">
+        <table>
+            <tr th:each="project : ${projects}">
+                <td th:text="${project.projectName}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="task-container">
+        <div style="flex-direction: column" class="task-list">
+            <table>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.taskName}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="task-info">
+            <p th:text="${task.taskId}"></p>
+            <p th:text="${task.taskName}"></p>
+            <p th:text="${task.taskContent}"></p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
+
+<!--    <form th:method="post" th:action="@{/login/}" th:object="${loginRequest}">-->
+<!--        <p><input name="id" type="text" placeholder="회원아이디"/>-->
+<!--        <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message"/>-->
+
+<!--        <p><input name="password" type="password" placeholder="비밀번호"/>-->
+<!--        <p th:each="item : ${#fields.errors('password')}" th:text="${item}" class="error-message"/>-->
+
+<!--        <p th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message"/>-->
+
+<!--        <p>-->
+<!--            <button type="submit">로그인</button>-->
+<!--        </p>-->
+<!--    </form>-->

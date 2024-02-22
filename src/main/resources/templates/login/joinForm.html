@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+<div class="join-container">
+    <form th:method="post" th:action="@{/accounts/}" th:object="${joinRequest}">
+        <p><input name="id" type="text" placeholder="회원아이디"/>
+        <p th:each="item : ${#fields.errors('id')}" th:text="${item}" class="error-message"/>
+
+        <p><input name="email" type="text" placeholder="회원이메일"/>
+        <p th:each="item : ${#fields.errors('email')}" th:text="${item}" class="error-message"/>
+
+        <p><input name="password" type="password" placeholder="비밀번호"/>
+        <p th:each="item : ${#fields.errors('password')}" th:text="${item}" class="error-message"/>
+
+        <p><input name="email" type="text" placeholder="회원이름"/>
+        <p th:each="item : ${#fields.errors('email')}" th:text="${item}" class="error-message"/>
+
+        <p th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message"/>
+
+        <p>
+            <button type="submit">회원가입</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>
+
+<!--private String memberId;-->
+
+<!--private String email;-->
+
+<!--private String password;-->
+
+<!--private String name;-->
