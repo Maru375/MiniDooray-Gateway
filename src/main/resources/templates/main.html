@@ -1,32 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <title>login</title>
     <link rel="stylesheet" href="/resources/style.css">
 </head>
 <body>
 <div class="main-container" style="display: flex">
-    <div style="flex-direction: column" class="project-container">
-        <table>
-            <tr th:each="project : ${projects}">
-                <td th:text="${project.projectName}"></td>
-            </tr>
-        </table>
-    </div>
-    <div class="task-container" style="display: flex">
-        <div style="flex-direction: column" class="task-list">
-            <table>
-                <tr th:each="task : ${tasks}">
-                    <td th:text="${task.taskName}"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="task-info">
-            <p th:text="${task.taskId}"></p>
-            <p th:text="${task.taskName}"></p>
-            <p th:text="${task.taskContent}"></p>
-        </div>
-    </div>
+    main
 </div>
 </body>
 </html>

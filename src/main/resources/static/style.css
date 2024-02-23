@@ -1,0 +1,22 @@
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.project-list {
+    width: 20%;
+}
+
+.task-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.task-list {
+    width: 30%;
+}
+
+.task-info-container {
+    width: 70%;
+}

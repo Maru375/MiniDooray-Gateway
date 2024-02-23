@@ -1,20 +1,22 @@
+<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="menuinfo">
-    <div class="login-info">
-        <button id="btn-logout">taskmenu</button>
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+<div style="display: flex">
+    <div th:fragment="menuinfo" th:if="${projects != null}">
+        <table>
+            <tr th:each="project : ${projects}">
+                <td>
+                    <form method="get" th:action="@{'/task/{projectId}'(projectId=${project.getProjectId()})}">
+                        <button th:text="${project.getProjectName()}" type="submit"></button>
+                    </form>
+                </td>
+            </tr>
+        </table>
     </div>
-    <form method="post" id="logoutForm" action="/task/list">
-    </form>
-
-    <!--    <p th:text="${}"-->
-    <script type="text/javascript">
-        window.addEventListener("DOMContentLoaded", function () {
-            const btnLogout = document.getElementById("btn-logout");
-            btnLogout.addEventListener("click", function () {
-                const logoutForm = document.getElementById("logoutForm");
-                logoutForm.submit();
-            });
-        });
-    </script>
-
 </div>
+</body>
+</html>

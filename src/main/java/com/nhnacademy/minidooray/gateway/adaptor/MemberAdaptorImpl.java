@@ -2,7 +2,7 @@ package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.domain.Member;
 import com.nhnacademy.minidooray.gateway.properties.MemberProperties;
-import com.nhnacademy.minidooray.gateway.request.JoinRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Component
+@Slf4j
 public class MemberAdaptorImpl implements MemberAdaptor {
 
     private final RestTemplate restTemplate;
@@ -44,21 +45,24 @@ public class MemberAdaptorImpl implements MemberAdaptor {
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        log.debug(requestEntity.toString());
+
         ResponseEntity<Member> exchange = restTemplate.exchange(memberProperties.getAddress() + "/accounts/{id}",
                 HttpMethod.GET,
                 requestEntity,
                 Member.class,
                 id);
+        log.debug(exchange.getBody().toString());
         return exchange.getBody();
     }
 
     @Override
-    public Member createMember(JoinRequest joinRequest) {
+    public Member createMember(Member member) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<JoinRequest> requestEntity = new HttpEntity<>(joinRequest, httpHeaders);
+        HttpEntity<Member> requestEntity = new HttpEntity<>(member, httpHeaders);
         ResponseEntity<Member> exchange = restTemplate.exchange(memberProperties.getAddress() + "/accounts",
                 HttpMethod.POST,
                 requestEntity,
@@ -68,7 +72,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     }
 
     @Override
-    public String deleteMember(Long id) {
+    public String deleteMember(String id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));

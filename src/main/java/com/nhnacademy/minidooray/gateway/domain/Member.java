@@ -14,5 +14,5 @@ public class Member {
 
     private String name;
 
-    private MemberState memberState;
+    private String state;
 }

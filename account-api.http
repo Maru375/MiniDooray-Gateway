@@ -1,0 +1,2 @@
+DELETE http://localhost:8888/test/1
+Content-Type: application/json

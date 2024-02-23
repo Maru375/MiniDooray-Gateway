@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.gateway.controller;
 
 import com.nhnacademy.minidooray.gateway.adaptor.MemberAdaptor;
+import com.nhnacademy.minidooray.gateway.domain.Member;
 import com.nhnacademy.minidooray.gateway.request.JoinRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,10 @@ public class AccountController {
     }
 
     @PostMapping("/accounts")
-    public String join(JoinRequest request, Model model) {
-        memberAdaptor.createMember(request);
+    public String join(Member member, Model model) {
+        log.debug(member.toString());
+        member.setState("JOIN");
+        memberAdaptor.createMember(member);
         return "redirect:/main";
     }
 

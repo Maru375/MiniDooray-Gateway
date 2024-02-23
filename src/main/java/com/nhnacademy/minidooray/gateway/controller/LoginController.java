@@ -26,13 +26,12 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(LoginRequest request, Model model, HttpSession session) {
-//        Member loginMember = memberAdaptor.getMember(request.getId());
-//        if (loginMember != null && request.getPassword().equals(loginMember.getPassword())) {
-//            session.setAttribute("member", loginMember);
-//            return "redirect:/";
-//        }
-        Member member = memberAdaptor.getMember(request.getId());
-        log.debug(member.toString());
-        return "redirect:/main/";
+        Member loginMember = memberAdaptor.getMember(request.getId());
+        if (loginMember != null && request.getPassword().equals(loginMember.getPassword())) {
+            session.setAttribute("member", loginMember);
+            log.debug("login success");
+            return "redirect:/task/main";
+        }
+        return "redirect:/login";
     }
 }

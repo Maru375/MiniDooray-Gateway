@@ -1,0 +1,4 @@
+GET http://localhost:9090/projects/1
+Accept: application/json
+
+###

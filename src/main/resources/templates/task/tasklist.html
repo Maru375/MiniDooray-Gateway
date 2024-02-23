@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
 <head>
     <title>login</title>
     <link rel="stylesheet" href="/resources/style.css">
 </head>
 <body>
-<div style="display: flex">
-    <div>
-        <!--        <th:block th:insert="~{task/taskmenu :: menuinfo}"></th:block>-->
-        <table>
-            <tr th:each="task : ${tasks}">
-                <td>
-                    <form method="get"
-                          th:action="@{'/task/{projectId}/{taskId}'(projectId=1, taskId=${task.getTaskId()})}">
-                        <button th:text="${task.getTaskName()}" type="submit"></button>
-                    </form>
-                </td>
-            </tr>
-        </table>
-
+<th:block layout:fragment="tasklist">
+    <div style="display: flex">
+        <div th:if="${tasks != null}">
+            <table>
+                <tr th:each="task : ${tasks}">
+                    <td>
+                        <form method="get"
+                              th:action="@{'/task/{projectId}/{taskId}'(projectId=1, taskId=${task.getTaskId()})}">
+                            <button th:text="${task.getTaskName()}" type="submit"></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
+</th:block>
 </body>
 </html>

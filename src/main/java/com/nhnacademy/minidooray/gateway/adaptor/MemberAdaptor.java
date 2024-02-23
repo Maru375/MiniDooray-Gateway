@@ -1,7 +1,6 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.domain.Member;
-import com.nhnacademy.minidooray.gateway.request.JoinRequest;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public interface MemberAdaptor {
 
     Member getMember(String id);
 
-    Member createMember(JoinRequest joinRequest);
+    Member createMember(Member member);
 
-    String deleteMember(Long id);
+    String deleteMember(String id);
 }
