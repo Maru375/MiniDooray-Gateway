@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
 
-
-<body id="page-top">
-<div id="wrapper">
-    <!-- 사이드바-->
-    <th:block th:replace="/task/taskmenu :: menuinfo"></th:block>
-
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <!-- 상단바-->
-            <!--            <th:block th:replace="/layout/fragments/top :: topbarFragment"></th:block>-->
-
-            <!-- 본문-->
-            <th:block layout:fragment="content"></th:block>
+<body>
+<div class="top-nav">
+    <th:block th:replace="/layout/top_nav :: topnav"></th:block>
+</div>
+<div class="main-container">
+    <div class="project-list">
+        <th:block th:replace="/task/task_menu :: menuinfo"></th:block>
+    </div>
+    <div class="task-container">
+        <div class="task-list">
+            <th:block th:replace="/task/task_list :: tasklist"></th:block>
         </div>
-
-        <!-- 공통 하단-->
-        <!--        <th:block th:replace="/layout/fragments/footer :: footerFragment"></th:block>-->
+        <div class="task-info-container">
+            <th:block layout:fragment="taskinfo"></th:block>
+        </div>
     </div>
 </div>
 
-<!-- 공통 스크립트-->
-<th:block th:replace="/layout/fragments/script :: scriptFragment"></th:block>
 </body>
 </html>

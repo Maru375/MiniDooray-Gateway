@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body {
+            height: 70%;
+            width: 80%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-section, .content-section, .textbox-section, .bottom-section {
+            border: 1px solid black;
+            margin: 5px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .top-section {
+            height: 5%;
+            padding-top: 0px;
+        }
+
+        .textbox-section {
+            height: 45%;
+        }
+
+        .content-section {
+            height: 45%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .select-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .date-milestone {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bottom-section {
+            height: 5%;
+        }
+
+        .dropdown-content option {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content option:hover {
+            background-color: #f1f1f1;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <form style="height: 100%" th:action="@{/task/write}" th:method="post">
+        <div class="top-section">
+            <img class="icon" src="/save.svg" alt="My Icon">
+            <button type="button" class="btn btn-link">저장</button>
+        </div>
+        <div class="content-section">
+            <div class="select-section">
+                <div>
+                    <select class="dropbtn" id="project" name="projectId">
+                        <option selected disabled>프로젝트 설정</option>
+
+                        <option th:each="project : ${projects}" th:value="${project.projectId}"
+                                th:text="${project.projectName}">
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <select class="dropbtn" id="tag" name="tagId">
+                        <option selected disabled>태그 없음</option>
+                        <option value="1">GET1</option>
+                        <option value="2">POST1</option>
+                        <option value="3">PUT1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="제목을 입력해 주세요." name="title">
+            </div>
+            <div class="input-group mb-3">
+                <p style="margin-right: 10px;">담당자</p>
+                <input type="text" class="form-control" placeholder="이름, 메일 주소를 입력해 주세요." name="recorder">
+            </div>
+            <!--            <div class="input-group mb-3">-->
+            <!--                <p style="margin-right: 10px;">참조자</p>-->
+            <!--                <input type="text" class="form-control" placeholder="이름, 메일 주소를 입력해 주세요.">-->
+            <!--            </div>-->
+            <div class="date-milestone">
+                <div class="input-group mb-3">
+                    <p style="margin-right: 10px;">만기일</p>
+                    <input type="datetime-local" id="endDate" name="endDate"
+                           th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"/>
+                </div>
+                <div>
+                    <select class="dropbtn" id="milestone" name="milestoneId">
+                        <option selected disabled>단계 없음</option>
+                        <option value="11">GET2</option>
+                        <option value="22">POST2</option>
+                        <option value="33">PUT2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="textbox-section">
+            <textarea style="height: 100%" class="form-control" aria-label="With textarea"
+                      placeholder="내용 입력"></textarea>
+        </div>
+        <div class="bottom-section">
+            <button class="btn btn-primary btn-sm" type="submit">저장</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

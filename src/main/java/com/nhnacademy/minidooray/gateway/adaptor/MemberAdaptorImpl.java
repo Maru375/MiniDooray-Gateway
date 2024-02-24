@@ -39,6 +39,24 @@ public class MemberAdaptorImpl implements MemberAdaptor {
 
 
     @Override
+    public Member getLoginMember(String id) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        log.debug(requestEntity.toString());
+
+        ResponseEntity<Member> exchange = restTemplate.exchange(memberProperties.getAddress() + "/login/{id}",
+                HttpMethod.GET,
+                requestEntity,
+                Member.class,
+                id);
+        log.debug(exchange.getBody().toString());
+        return exchange.getBody();
+    }
+
+    @Override
     public Member getMember(String id) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);

@@ -10,7 +10,10 @@ public interface MemberAdaptor {
 
     Member getMember(String id);
 
+    Member getLoginMember(String id);
+
     Member createMember(Member member);
 
     String deleteMember(String id);
 }
+

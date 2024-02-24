@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<th:block th:fragment="topnav">
+    <a href="/task">
+        <img class="icon" src="/icon.svg" alt="My Icon">
+    </a>
+</th:block>
+</body>
+</html>

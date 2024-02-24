@@ -21,16 +21,16 @@ public class LoginController {
     @GetMapping("/login")
     public String loginForm(Model model) {
         model.addAttribute("loginRequest", new LoginRequest());
-        return "login/loginForm";
+        return "login/login_form";
     }
 
     @PostMapping("/login")
     public String login(LoginRequest request, Model model, HttpSession session) {
-        Member loginMember = memberAdaptor.getMember(request.getId());
+        Member loginMember = memberAdaptor.getLoginMember(request.getId());
         if (loginMember != null && request.getPassword().equals(loginMember.getPassword())) {
             session.setAttribute("member", loginMember);
             log.debug("login success");
-            return "redirect:/task/main";
+            return "redirect:/task";
         }
         return "redirect:/login";
     }

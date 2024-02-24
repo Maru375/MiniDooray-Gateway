@@ -19,13 +19,13 @@ public class AccountController {
     @GetMapping("/accounts")
     public String joinForm(Model model) {
         model.addAttribute("joinRequest", new JoinRequest());
-        return "login/joinForm";
+        return "login/join_form";
     }
 
     @PostMapping("/accounts")
     public String join(Member member, Model model) {
         log.debug(member.toString());
-        member.setState("JOIN");
+//        member.setState("JOIN");
         memberAdaptor.createMember(member);
         return "redirect:/main";
     }

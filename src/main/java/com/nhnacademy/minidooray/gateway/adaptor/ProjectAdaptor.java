@@ -1,15 +1,16 @@
 package com.nhnacademy.minidooray.gateway.adaptor;
 
 import com.nhnacademy.minidooray.gateway.domain.Project;
+import com.nhnacademy.minidooray.gateway.domain.Task;
 
 import java.util.List;
 
 public interface ProjectAdaptor {
-    List<Project> getProjects();
+    List<Project> getProjects(String memberId);
 
-    Project getProject(Integer projectId);
+    List<Task> getProject(String memberId, Integer projectId);
 
-    Project createProject(Project project);
+    Project createProject(String memberId, Project project);
 
-    String deleteProject(Integer projectId);
+    String deleteProject(String memberId, Integer projectId);
 }
